@@ -1,0 +1,38 @@
+{% load static %}
+{% for brands in brands %}
+<tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{brands.name}}</td>
+    <td>{{brands.division.name}}</td>
+    <!-- <td>
+    
+    {% if brands.is_active %}
+    <label class="switch">
+      <input type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
+    {% else %}
+    <label class="switch">
+      <input type="checkbox" >
+      <span class="slider round"></span>
+    </label>
+    {% endif %}
+      
+    
+  </td>
+    <td>{{brands.is_active}}</td> -->
+    <td>
+        <div class="dropdown dropstart">
+            <button class="btn" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a href="#" class="dropdown-item brand-edit" data-bs-toggle="modal" id="brand-edit"
+                  data-bs-target="#addFormModal" data-brand-id="{{brands.id}}">Edit</a></li>
+              <li><a class="dropdown-item " href="javascript:;" onclick="DeleteBrand({{brands.id}})">Delete</a></li>
+            </ul>
+          </div>
+    </td>
+<tr>
+{% endfor %}

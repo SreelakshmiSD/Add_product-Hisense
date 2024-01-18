@@ -1,0 +1,39 @@
+{% load static %}
+{% for categories in categories %}
+<tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{categories.name}}</td>
+    <td>{{categories.division.name}}</td>
+    <!-- <td><label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label></td> -->
+    <!-- <td>{{categories.is_active}}</td> -->
+    <td>
+        <div class="dropdown dropstart">
+            <button class="btn" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a href="#" class="dropdown-item category-edit" data-bs-toggle="modal" id="category-edit"
+                  data-bs-target="#addFormModal" data-category-id="{{categories.id}}">Edit</a></li>
+              <li><a class="dropdown-item " href="javascript:;" onclick="DeleteCategory({{categories.id}})">Delete</a></li>
+            </ul>
+          </div>
+    </td>
+<tr>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+

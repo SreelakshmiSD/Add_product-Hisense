@@ -1,0 +1,26 @@
+<div class="formbg-inner">
+    <div class="edit-division-form">
+        {% if id %}
+            <input type="hidden" value="{% url 'appproductapp:update_division' id %}" id="form_url" name="form_url">
+        {% else %}
+            <input type="hidden" value="{% url 'appproductapp:create_division' %}" id="form_url" name="form_url">
+        {% endif %}            
+        <div class="field padding-bottom--24">
+            <label for="name">Name</label> {{form.name}}
+            <p class="text-danger mt-2 mb-0">{{ form.name.errors.as_text  }}</p>
+        </div>
+        <div class="field padding-bottom--24">
+            <label for="brand">SKU Classification</label>
+             {{form.sku_classification}}
+            <p class="text-danger mt-2 mb-0">{{ form.sku_classification.errors.as_text  }}</p>
+        </div>
+        <div class=" padding-bottom--24">
+            <label for="brand">Screen</label>
+             {{form.screen}}
+            <p class="text-danger mt-2 mb-0">{{ form.screen.errors.as_text  }}</p>
+        </div>
+        <div class="field padding-bottom--24 mt-5">
+            <input class="btn btn-primary" id="division-submit" type="submit" name="submit" value="Save">
+        </div>
+    </div>
+</div>

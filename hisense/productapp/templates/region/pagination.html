@@ -1,0 +1,52 @@
+{% load static %}
+{% load my_filters %}
+{% block body_block %}
+
+{% if  regions.has_other_pages %}
+    {% get_proper_elided_page_range regions.paginator regions.number as page_range %}
+    <div class="pagination-count">Showing <span>{{ regions.start_index }}</span> to <span>{{ regions.end_index }}</span> of <span>{{ regions.paginator.count }}</span> entries</div>
+    <input type="hidden" id="page" value="1" />
+    <input type="hidden" id="current_page" value="{{current_page}}" />
+    <input type="hidden" id="start_count" value="1" />
+    <ul class="pagination mt-0 ml-auto" id="pagination">
+        {% if regions.has_previous %}
+            <li>
+                <a href="javascript:void(0)" onclick="FilterRegions('{{ regions.previous_page_number }}');" page-val="{{ regions.previous_page_number }}">Previous</a>
+            </li>
+        {% else %}
+            <li class="disabled"><a href="#" tabindex="-1"></a></li>
+        {% endif %}
+
+        {% for i in page_range %}
+            {% if current_page == i %}
+                <li>
+                    <a href="#" class="active">{{ i }}</a>
+                </li>
+            {% else %}
+                {% if i == regions.paginator.ELLIPSIS %}
+                    <li>
+                        {{ regions.paginator.ELLIPSIS }}
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="javascript:void(0)" onclick="FilterRegions('{{ i }}');" page-val="{{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if regions.has_next %}
+            <li>
+                <a href="javascript:void(0)" onclick="FilterRegions('{{ regions.next_page_number }}');" page-val="{{ regions.next_page_number }}">Next</a>
+            </li>
+        {% else %}
+            <li class="disabled"><a href="#" tabindex="-1" ></a></li>
+        {% endif %}
+    </ul> 
+
+{% else %}
+<div class="pagination-count">Showing <span>{{ regions.start_index }}</span> to <span>{{ regions.end_index }}</span> of <span>{{ regions.paginator.count }}</span> entries</div>
+<!-- <ul class="pagination mt-0 ml-auto" id="pagination">
+    <li><a href="#" class="active">1</a></li>
+  </ul>  -->
+{% endif %}
+{% endblock %}

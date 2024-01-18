@@ -1,0 +1,39 @@
+{% load static %}
+{% for subcategories in subcategories %}
+<tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{subcategories.name}}</td>
+    <td>{{subcategories.category.name}}</td>
+    <!-- <td><label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label></td> -->
+    <!-- <td>{{subcategories.is_active}}</td> -->
+    <td>
+        <div class="dropdown dropstart">
+            <button class="btn" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a href="#" class="dropdown-item subcategory-edit" data-bs-toggle="modal" id="subcategory-edit"
+                  data-bs-target="#addFormModal" data-subcategory-id="{{subcategories.id}}">Edit</a></li>
+              <li><a class="dropdown-item " href="javascript:;" onclick="DeleteSubcategory({{subcategories.id}})">Delete</a></li>
+            </ul>
+          </div>
+    </td>
+<tr>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+

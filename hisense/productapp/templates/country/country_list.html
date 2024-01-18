@@ -1,0 +1,38 @@
+{% load static %}
+{% for countries in countries %}
+<tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{countries.name}}</td>
+    <!-- <td><label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label></td> -->
+    <!-- <td>{{countries.is_active}}</td> -->
+    <td>
+        <div class="dropdown dropstart">
+            <button class="btn" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><a href="#" class="dropdown-item country-edit" data-bs-toggle="modal" id="country-edit"
+                  data-bs-target="#addFormModal" data-country-id="{{countries.id}}">Edit</a></li>
+              <li><a class="dropdown-item " href="javascript:;" onclick="DeleteCountry({{countries.id}})">Delete</a></li>
+            </ul>
+          </div>
+    </td>
+<tr>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+

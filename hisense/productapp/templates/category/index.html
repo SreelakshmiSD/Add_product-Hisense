@@ -1,0 +1,78 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="section dashboard container " style="margin-left: 295px; margin-top: 100px; width: 78%;">
+    <div class="row">
+
+        <div class="col">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <input type="hidden" value="" id="load_category">
+            
+                            <div class="justify-content-end d-flex align-items-end mb-2">
+                                <a href="" class="btn" style="background-color: #6f42c1; color: white;" id="create_category"
+                                    data-bs-toggle="modal" data-bs-target="#addFormModal">Add New<i
+                                        class="bi bi-plus"></i></a>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Sl.NO</th>
+                                        <th>Category</th>
+                                        <th>Division</th>
+                                        <!-- <th>Status</th> -->
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="category-tbody">
+                                    {% include 'category/category_list.html' %}
+                                </tbody>
+                            </table>
+
+
+
+                            <div class="pagination-outer align-items-center justify-content-between d-flex" id="category-pagination">
+                                {% include 'category/pagination.html' %}
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="modal fade" id="addFormModal" tabindex="-1" aria-labelledby="addFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="popup_head"></h2>
+                <!-- <h5 class="" id="formModalLabel">Add </h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Floating Labels Form -->
+                <form method="post" action="" class="CategoryForm" id="CategoryForm" name="CategoryForm">
+                    {% csrf_token %}
+                    <div class="" id="category-form-div">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block page_script %}
+<script src="{% static 'assets/js/masters_ajax.js' %}"></script>
+{% endblock page_script %}

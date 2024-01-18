@@ -1,0 +1,20 @@
+<div class="formbg-inner">
+    <div class="edit-region-form">
+        {% if id %}
+            <input type="hidden" value="{% url 'appproductapp:update_region' id %}" id="form_url" name="form_url">
+        {% else %}
+            <input type="hidden" value="{% url 'appproductapp:create_region' %}" id="form_url" name="form_url">
+        {% endif %} 
+        <div class="field padding-bottom--24">
+            <label for="name">Country</label> {{form.country}}
+            <p class="text-danger mt-2 mb-0">{{ form.country.errors.as_text  }}</p>
+        </div>           
+        <div class="field padding-bottom--24">
+            <label for="name">Region</label> {{form.name}}
+            <p class="text-danger mt-2 mb-0">{{ form.name.errors.as_text  }}</p>
+        </div>
+        <div class="field padding-bottom--24 mt-5">
+            <input class="btn btn-primary" id="region-submit" type="submit" name="submit" value="Save">
+        </div>
+    </div>
+</div>

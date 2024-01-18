@@ -1,0 +1,52 @@
+{% load static %}
+{% load my_filters %}
+{% block body_block %}
+
+{% if  screensizes.has_other_pages %}
+    {% get_proper_elided_page_range screensizes.paginator screensizes.number as page_range %}
+    <div class="pagination-count">Showing <span>{{ screensizes.start_index }}</span> to <span>{{ screensizes.end_index }}</span> of <span>{{ screensizes.paginator.count }}</span> entries</div>
+    <input type="hidden" id="page" value="1" />
+    <input type="hidden" id="current_page" value="{{current_page}}" />
+    <input type="hidden" id="start_count" value="1" />
+    <ul class="pagination mt-0 ml-auto" id="pagination">
+        {% if screensizes.has_previous %}
+            <li>
+                <a href="javascript:void(0)" onclick="FilterScreensizes('{{ screensizes.previous_page_number }}');" page-val="{{ screensizes.previous_page_number }}">Previous</a>
+            </li>
+        {% else %}
+            <li class="disabled"><a href="#" tabindex="-1"></a></li>
+        {% endif %}
+
+        {% for i in page_range %}
+            {% if current_page == i %}
+                <li>
+                    <a href="#" class="active">{{ i }}</a>
+                </li>
+            {% else %}
+                {% if i == screensizes.paginator.ELLIPSIS %}
+                    <li>
+                        {{ screensizes.paginator.ELLIPSIS }}
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="javascript:void(0)" onclick="FilterScreensizes('{{ i }}');" page-val="{{ i }}">{{ i }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if screensizes.has_next %}
+            <li>
+                <a href="javascript:void(0)" onclick="FilterScreensizes('{{ screensizes.next_page_number }}');" page-val="{{ screensizes.next_page_number }}">Next</a>
+            </li>
+        {% else %}
+            <li class="disabled"><a href="#" tabindex="-1" ></a></li>
+        {% endif %}
+    </ul> 
+
+{% else %}
+<div class="pagination-count">Showing <span>{{ screensizes.start_index }}</span> to <span>{{ screensizes.end_index }}</span> of <span>{{ screensizes.paginator.count }}</span> entries</div>
+<!-- <ul class="pagination mt-0 ml-auto" id="pagination">
+    <li><a href="#" class="active">1</a></li>
+  </ul>  -->
+{% endif %}
+{% endblock %}
